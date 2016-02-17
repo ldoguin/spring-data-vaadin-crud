@@ -1,88 +1,85 @@
 package crud.backend;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-@Entity
+import org.springframework.data.couchbase.core.mapping.Document;
+
+import com.couchbase.client.java.repository.annotation.Id;
+
+@Document
 public class Person implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+	@Id
+	private String id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date birthDay;
+	private Long birthDay;
 
-    private Boolean colleague;
+	private Boolean colleague;
 
-    @NotNull(message = "Name is required")
-    @Size(min = 3, max = 50, message = "name must be longer than 3 and less than 40 characters")
-    private String name;
+	@NotNull(message = "Name is required")
+	@Size(min = 3, max = 50, message = "name must be longer than 3 and less than 40 characters")
+	private String name;
 
-    private String phoneNumber;
+	private String phoneNumber;
 
-    @NotNull(message = "Email is required")
-    @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Must be valid email")
-    private String email;
-    
-    public Person() {
-    }
+	@NotNull(message = "Email is required")
+	@Pattern(regexp = ".+@.+\\.[a-z]+", message = "Must be valid email")
+	private String email;
 
-    public long getId() {
-        return id;
-    }
+	public Person(String id) {
+		this.id = id;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public Date getBirthDay() {
-        return birthDay;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
+	public Long getBirthDay() {
+		return birthDay;
+	}
 
-    public Boolean getColleague() {
-        return colleague;
-    }
+	public void setBirthDay(Long birthDay) {
+		this.birthDay = birthDay;
+	}
 
-    public void setColleague(Boolean colleague) {
-        this.colleague = colleague;
-    }
+	public Boolean getColleague() {
+		return colleague;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setColleague(Boolean colleague) {
+		this.colleague = colleague;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

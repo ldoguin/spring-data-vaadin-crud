@@ -10,6 +10,9 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.UI;
 import crud.backend.Person;
 import crud.backend.PersonRepository;
+
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -99,7 +102,7 @@ public class MainUI extends UI {
     }
 
     public void add(ClickEvent clickEvent) {
-        edit(new Person());
+        edit(new Person(UUID.randomUUID().toString()));
     }
 
     public void edit(ClickEvent e) {
